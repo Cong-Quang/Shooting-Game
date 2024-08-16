@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+using System.Text;
 
 namespace b3
 {
@@ -6,7 +7,8 @@ namespace b3
     {
         static void Main(string[] args)
         {
-
+            Console.OutputEncoding = Encoding.UTF8;
+            Terminal.gI().test();
         }
     }
 }

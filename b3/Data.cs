@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace b3
 {
-    internal class KeyPress
+    public static class Data
     {
+        public static string TitleMap { get; set; }
     }
 }

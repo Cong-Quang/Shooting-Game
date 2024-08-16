@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace b3
 {
-    internal class Handle
+    public class Weapons
     {
-
+        public EffectMob EffectMob { get; set; }
     }
 }
