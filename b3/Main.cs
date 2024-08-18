@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace b3
 {
-    public static class Data
+    internal class Program
     {
-        public static string TitleMap { get; set; }
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+        }
     }
 }
