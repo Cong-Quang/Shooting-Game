@@ -13,16 +13,31 @@ namespace b3
         {
             Console.OutputEncoding = Encoding.UTF8;
             Console.CursorVisible = false;
+
+            GameLoop();
+        }
+        static void GameLoop()
+        {
             Player Quang = new Player("Phi cơ của Quang");
             Terminal.gI().setTitle("game LOR của cu Quang");
-
-            while (true)
+            Random TenBienRanDom = new Random();
+            ConsoleKeyInfo key;
+            new Thread(() =>
             {
-                Quang.showPlayer();
-                Quang.Move();
-                Console.Clear();
-                Thread.Sleep(1);
-            }
+                while (true)
+                {
+                    key = Console.ReadKey();
+                    Terminal.gI().Move(Quang, key);
+                }
+            }).Start();
+            new Thread(() =>
+            {
+                while (true)
+                {
+                    Quang.showPlayer();
+                    Thread.Sleep(5);
+                }
+            }).Start();
         }
     }
 }

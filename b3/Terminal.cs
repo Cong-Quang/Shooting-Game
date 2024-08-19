@@ -27,7 +27,7 @@ namespace b3
                 {
                     sub += s[i].ToString();
                     Console.Title = sub;
-                    Thread.Sleep(200);
+                    Thread.Sleep(50);
                 }
             }).Start();
         }
@@ -58,5 +58,96 @@ namespace b3
             Console.WriteLine(s);
             Console.ResetColor();
         }
+        /// <summary>
+        /// di chuyển theo mob
+        /// </summary>
+        /// <param name="mob"></param>
+        public void Move(Mob mob, ConsoleKeyInfo key)
+        {
+            if (key.Key == ConsoleKey.LeftArrow)
+            {
+                if (mob.x == 0)
+                    return;
+                mob.x--;
+                Terminal.gI().print(" ", mob.x + mob.representation.Length, mob.y);
+            }
+            if (key.Key == ConsoleKey.RightArrow)
+            {
+                if (mob.x == 50)
+                    return;
+                mob.x++;
+                Terminal.gI().print(" ", mob.x - 1 , mob.y);
+
+            }
+            if (key.Key == ConsoleKey.UpArrow)
+            {
+                if (mob.y == 0)
+                    return;
+                mob.y--;
+                Terminal.gI().print(" ", mob.x , mob.y - 1);
+            }
+            if (key.Key == ConsoleKey.DownArrow)
+            {
+                if (mob.y == 20)
+                    return;
+                mob.y++;
+                Terminal.gI().print(" ", mob.x, mob.y + 1);
+            }
+            if (key.Key == ConsoleKey.Spacebar)
+            {
+                mob.y += 5;
+            }
+            //tele(mob, key);
+
+        }
+        //public Mob tele(Mob mob, ConsoleKeyInfo key)
+        //{
+        //    if (key.Key == ConsoleKey.A)
+        //    {
+        //        if ((mob.x - Player.representation.Length) < 0)
+        //        {
+
+        //        }
+        //        else if (mob.x > 0 || mob.x < 10)
+        //        {
+        //            mob.x -= Player.representation.Length;
+        //        }
+        //    }
+        //    if (key.Key == ConsoleKey.D)
+        //    {
+        //        if ((mob.x + Player.representation.Length) > 50)
+        //        {
+
+        //        }
+        //        else if (mob.x > 0 || mob.x < 50)
+        //        {
+        //            mob.x += Player.representation.Length;
+        //        }
+        //    }
+
+        //    if (key.Key == ConsoleKey.W)
+        //    {
+        //        if ((mob.y - Player.representation.Length) < 0)
+        //        {
+
+        //        }
+        //        else if (mob.y > 0 || mob.y < 10)
+        //        {
+        //            mob.y -= Player.representation.Length;
+        //        }
+        //    }
+        //    if (key.Key == ConsoleKey.S)
+        //    {
+        //        if ((mob.y + Player.representation.Length) > 30)
+        //        {
+
+        //        }
+        //        else if (mob.y > 0 || mob.y < 30)
+        //        {
+        //            mob.y += Player.representation.Length;
+        //        }
+        //    }
+        //    return mob;
+        //}
     }
 }

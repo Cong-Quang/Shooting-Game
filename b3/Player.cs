@@ -8,7 +8,8 @@ namespace b3
 {
     internal class Player : Mob
     {
-        public static string representation = "<|(x)|>";
+        
+        private static Player gi;
         public Player(string name) 
         { 
             this.name = name;
