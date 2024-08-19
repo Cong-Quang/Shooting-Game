@@ -27,7 +27,7 @@ namespace b3
                 {
                     sub += s[i].ToString();
                     Console.Title = sub;
-                    Thread.Sleep(50);
+                    Thread.Sleep(100);
                 }
             }).Start();
         }
@@ -64,41 +64,78 @@ namespace b3
         /// <param name="mob"></param>
         public void Move(Mob mob, ConsoleKeyInfo key)
         {
-            if (key.Key == ConsoleKey.LeftArrow)
+            switch (key.Key)
             {
-                if (mob.x == 0)
-                    return;
-                mob.x--;
-                Terminal.gI().print(" ", mob.x + mob.representation.Length, mob.y);
+                case ConsoleKey.LeftArrow:
+                    MoveLeft(mob);
+                    break;
+                case ConsoleKey.RightArrow:
+                    MoveRight(mob);
+                    break;
+                case ConsoleKey.UpArrow:
+                    MoveUp(mob);
+                    break;
+                case ConsoleKey.DownArrow:
+                    MoveDown(mob);
+                    break;
+                case ConsoleKey.Spacebar:
+                    Jump(mob);
+                    break;
             }
-            if (key.Key == ConsoleKey.RightArrow)
-            {
-                if (mob.x == 50)
-                    return;
-                mob.x++;
-                Terminal.gI().print(" ", mob.x - 1 , mob.y);
+        }
 
-            }
-            if (key.Key == ConsoleKey.UpArrow)
-            {
-                if (mob.y == 0)
-                    return;
-                mob.y--;
-                Terminal.gI().print(" ", mob.x , mob.y - 1);
-            }
-            if (key.Key == ConsoleKey.DownArrow)
-            {
-                if (mob.y == 20)
-                    return;
-                mob.y++;
-                Terminal.gI().print(" ", mob.x, mob.y + 1);
-            }
-            if (key.Key == ConsoleKey.Spacebar)
-            {
-                mob.y += 5;
-            }
-            //tele(mob, key);
+        private void MoveLeft(Mob mob)
+        {
+            if (mob.x == 0)
+                return;
+            mob.x--;
+            print(" ", mob.x + mob.representation.Length, mob.y);
+        }
 
+        private void MoveRight(Mob mob)
+        {
+            if (mob.x == 50)
+                return;
+            mob.x++;
+            print(" ", mob.x - 1, mob.y);
+        }
+
+        private void MoveUp(Mob mob)
+        {
+            if (mob.y == 0)
+                return;
+            mob.y--;
+            int s = mob.y + 1;
+            for (int i = 0; i < mob.representation.Length + 1; i++)
+            {
+                print(" ", mob.x + i, s);
+            }
+        }
+
+        private void MoveDown(Mob mob)
+        {
+            if (mob.y == 20)
+                return;
+            mob.y++;
+            int s = mob.y - 1;
+            for (int i = 0; i < mob.representation.Length + 1; i++)
+            {
+                print(" ", mob.x + i, s);
+            }
+        }
+
+        private void Jump(Mob mob)
+        {
+            for (int i = 1; i <= 4; i++)
+            {
+                MoveUp(mob);
+                Thread.Sleep(10);
+            }
+            for (int i = 1; i <= 4; i++)
+            {
+                MoveDown(mob);
+                Thread.Sleep(10);
+            }
         }
         //public Mob tele(Mob mob, ConsoleKeyInfo key)
         //{

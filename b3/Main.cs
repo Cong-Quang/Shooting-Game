@@ -28,6 +28,7 @@ namespace b3
                 {
                     key = Console.ReadKey();
                     Terminal.gI().Move(Quang, key);
+                    Thread.Sleep(5);
                 }
             }).Start();
             new Thread(() =>
