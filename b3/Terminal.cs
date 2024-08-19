@@ -27,7 +27,7 @@ namespace b3
                 {
                     sub += s[i].ToString();
                     Console.Title = sub;
-                    Thread.Sleep(120);
+                    Thread.Sleep(200);
                 }
             }).Start();
         }
