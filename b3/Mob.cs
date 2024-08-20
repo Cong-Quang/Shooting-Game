@@ -18,7 +18,7 @@ namespace b3
         public string name { get; set; }
         public void attack(Mob mob)
         {
-            mob.Dame -= this.Dame;
+           this.hp -= mob.Dame;
         }
         public void healHP(float hp)
         {

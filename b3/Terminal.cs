@@ -6,13 +6,14 @@ namespace b3
     internal class Terminal
     {
         private static Terminal _instance;
-        public int maxSize = 0;
-        public int minSize = 0;
+        
         public static Terminal gI()
         {
             if (_instance == null) _instance = new Terminal();
             return _instance;
         }
+        public int SizeX = 50;
+        public int SizeY = 20;
 
         /// <summary>
         /// đặt title với hiệu ứng đánh chữ :> màu mè tí thôi
@@ -58,35 +59,44 @@ namespace b3
             Console.WriteLine(s);
             Console.ResetColor();
         }
+        public void PrintfBoard() 
+        {
+            print("-",0,0);
+            print("-", 0, SizeY + 1);
+            print("-", SizeX + 5, SizeY + 1);
+            print("-", SizeX + 5, 0);
+
+        }
+        
         /// <summary>
         /// di chuyển theo mob
         /// </summary>
         /// <param name="mob"></param>
-        public void Move(Mob mob, ConsoleKeyInfo key)
+        public void Move(Mob mob, int key)
         {
-            switch (key.Key)
+            switch (key)
             {
-                case ConsoleKey.LeftArrow:
+                case 1:
                     MoveLeft(mob);
                     break;
-                case ConsoleKey.RightArrow:
+                case 2:
                     MoveRight(mob);
                     break;
-                case ConsoleKey.UpArrow:
+                case 3:
                     MoveUp(mob);
                     break;
-                case ConsoleKey.DownArrow:
+                case 4:
                     MoveDown(mob);
                     break;
-                case ConsoleKey.Spacebar:
-                    Jump(mob);
-                    break;
+                //case ConsoleKey.Spacebar:
+                //  //  Jump(mob);
+                //    break;
             }
         }
 
         private void MoveLeft(Mob mob)
         {
-            if (mob.x == 0)
+            if (mob.x == 1)
                 return;
             mob.x--;
             print(" ", mob.x + mob.representation.Length, mob.y);
@@ -94,7 +104,7 @@ namespace b3
 
         private void MoveRight(Mob mob)
         {
-            if (mob.x == 50)
+            if (mob.x == SizeX - 1)
                 return;
             mob.x++;
             print(" ", mob.x - 1, mob.y);
@@ -102,7 +112,7 @@ namespace b3
 
         private void MoveUp(Mob mob)
         {
-            if (mob.y == 0)
+            if (mob.y == 1)
                 return;
             mob.y--;
             int s = mob.y + 1;
@@ -114,7 +124,7 @@ namespace b3
 
         private void MoveDown(Mob mob)
         {
-            if (mob.y == 20)
+            if (mob.y == SizeY)
                 return;
             mob.y++;
             int s = mob.y - 1;
@@ -124,19 +134,19 @@ namespace b3
             }
         }
 
-        private void Jump(Mob mob)
-        {
-            for (int i = 1; i <= 4; i++)
-            {
-                MoveUp(mob);
-                Thread.Sleep(10);
-            }
-            for (int i = 1; i <= 4; i++)
-            {
-                MoveDown(mob);
-                Thread.Sleep(10);
-            }
-        }
+        //private void Jump(Mob mob)
+        //{
+        //    for (int i = 1; i <= 4; i++)
+        //    {
+        //        MoveUp(mob);
+        //        Thread.Sleep(5);
+        //    }
+        //    for (int i = 1; i <= 4; i++)
+        //    {
+        //        MoveDown(mob);
+        //        Thread.Sleep(5);
+        //    }
+        //}
         //public Mob tele(Mob mob, ConsoleKeyInfo key)
         //{
         //    if (key.Key == ConsoleKey.A)
